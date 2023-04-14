@@ -16,8 +16,8 @@ class ProductPage(BasePage):
         assert expected_name in text, f"'{expected_name}' should be contained in '{text}'"
 
     def check_sum(self):
-        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text.split(" ")[0]
-        basket_price = self.browser.find_element(*ProductPageLocators.PRICE_IN_BASKET).text.split(" ")[3]
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        basket_price = self.browser.find_element(*ProductPageLocators.PRICE_IN_BASKET).text
         assert product_price == basket_price, f"product_price={product_price} != basket_price={basket_price}"
 
     def solve_quiz_and_get_code(self):
