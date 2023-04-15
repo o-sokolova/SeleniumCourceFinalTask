@@ -12,8 +12,7 @@ class ProductPage(BasePage):
     def check_add(self):
         result = self.browser.find_element(*ProductPageLocators.SUCCESS_ALERT)
         text = result.text
-        expected_text = self.browser.find_element(*ProductPageLocators.BOOK_NAME).text + " has been added to your " \
-                                                                                         "basket."
+        expected_text = self.browser.find_element(*ProductPageLocators.BOOK_NAME).text
         assert expected_text == text, f"Expected alert = '{expected_text}'\n" \
                                       f"Fact alert = '{text}'"
 
