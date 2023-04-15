@@ -1,7 +1,9 @@
 import pytest
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
+from pages.basket_page import BasketPage
 from .pages.locators import ProductPageLocators
+from .pages.locators import BasePageLocators
 
 
 @pytest.mark.skip
@@ -65,3 +67,13 @@ def test_guest_can_go_to_login_page(browser):
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    page = ProductPage(browser, link)
+    page.open()
+    page.click_button(*BasePageLocators.BUTTON_TO_BASKET)
+    basket_page = BasketPage(browser, browser.current_url)
+    assert basket_page.is_basket_empty(), "Basket must be empty"
+    assert basket_page.is_empty_basket_text_present(), "Empty basket text doesn't present"
