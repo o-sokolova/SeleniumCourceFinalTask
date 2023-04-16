@@ -45,3 +45,11 @@ class BasePage():
     def click_button(self, how, what):
         btn = self.browser.find_element(how, what)
         btn.click()
+
+    def fill_field(self, how, what, value):
+        field = self.browser.find_element(how, what)
+        field.send_keys(value)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
