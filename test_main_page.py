@@ -25,5 +25,4 @@ class TestLoginFromMainPage:
         page.open()
         page.click_button(*BasePageLocators.BUTTON_TO_BASKET)
         basket_page = BasketPage(browser, browser.current_url)
-        assert basket_page.is_basket_empty(), "Basket must be empty"
-        assert basket_page.is_empty_basket_text_present(), "Empty basket text doesn't present"
+        basket_page.should_be_empty_basket()

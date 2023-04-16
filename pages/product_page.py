@@ -33,3 +33,9 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def should_not_be_success_alert(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ALERT), "Alert is present although it shouldn't"
+
+    def should_be_disappeared_alert(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_ALERT), "Alert is not disappeared although it should"
